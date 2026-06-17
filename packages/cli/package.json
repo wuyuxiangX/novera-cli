@@ -1,0 +1,33 @@
+{
+  "name": "novera",
+  "version": "0.1.0",
+  "description": "Command-line toolkit for Novera — search, capture, and organize your saved content",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "novera": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@novera/sdk": "workspace:*",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "open": "^10.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

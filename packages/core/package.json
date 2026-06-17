@@ -1,0 +1,40 @@
+{
+  "name": "@novera/sdk",
+  "version": "0.1.0",
+  "description": "Novera API client and authentication for Node — the core shared by the CLI and MCP server",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "gen:types": "openapi-typescript ${NOVERA_OPENAPI_URL:-https://api.dev.novera.ink/openapi.json} -o src/generated/schema.d.ts"
+  },
+  "optionalDependencies": {
+    "keytar": "^7.9.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.4.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

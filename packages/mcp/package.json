@@ -1,0 +1,31 @@
+{
+  "name": "@novera/mcp-server",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server for Novera — search and manage saved content from AI clients",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "novera-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@novera/sdk": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
