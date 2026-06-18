@@ -8,7 +8,7 @@ from the terminal, from scripts, and from AI clients.
 | [`@novera/sdk`](packages/core)       | `@novera/sdk`        | API client + auth (PAT and OAuth login). The shared core. |
 | [`novera`](packages/cli)             | `novera`             | The CLI: `npx novera search "rust"`.                      |
 | [`@novera/mcp-server`](packages/mcp) | `@novera/mcp-server` | MCP server for Claude Desktop, Cursor, etc.               |
-| [`skill/novera`](skill/novera)       | —                    | A Claude Code skill that drives the CLI.                  |
+| [`skill/novera-save`](skill/novera-save) · [`skill/novera-search`](skill/novera-search) | — | Two focused Claude Code skills (save into / find in Novera) that drive the CLI. |
 
 ## Quick start
 
