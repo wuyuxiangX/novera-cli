@@ -23,7 +23,8 @@ const stripSlash = (s: string): string => s.replace(/\/+$/, "");
 
 const TARGETS = {
   production: {
-    webappBase: "https://novera.ink",
+    // The authorize page is served by the app, not the marketing site.
+    webappBase: "https://app.novera.ink",
     apiBase: "https://api.novera.ink/api/v1",
   },
   development: {
