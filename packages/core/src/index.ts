@@ -1,7 +1,7 @@
 /**
- * @novera/sdk — the Novera API client + auth shared by the CLI and MCP server.
+ * novera-sdk — the Novera API client + auth shared by the CLI and MCP server.
  *
- *   import { createClient } from "@novera/sdk";
+ *   import { createClient } from "novera-sdk";
  *   const novera = await createClient();          // resolves PAT or login token
  *   const results = await novera.search({ q: "rust" });
  */

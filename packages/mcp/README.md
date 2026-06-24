@@ -1,4 +1,4 @@
-# @novera/mcp-server
+# novera-mcp-server
 
 [Model Context Protocol](https://modelcontextprotocol.io) server for
 [Novera](https://novera.ink). Lets AI clients (Claude Desktop, Cursor, …) search
@@ -9,7 +9,7 @@ and manage your saved content.
   "mcpServers": {
     "novera": {
       "command": "npx",
-      "args": ["-y", "@novera/mcp-server"],
+      "args": ["-y", "novera-mcp-server"],
       "env": { "NOVERA_API_KEY": "opk_xxx" }
     }
   }

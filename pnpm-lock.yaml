@@ -41,15 +41,15 @@ importers:
 
   packages/cli:
     dependencies:
-      '@novera/sdk':
-        specifier: workspace:*
-        version: link:../core
       cli-table3:
         specifier: ^0.6.5
         version: 0.6.5
       commander:
         specifier: ^12.1.0
         version: 12.1.0
+      novera-sdk:
+        specifier: workspace:*
+        version: link:../core
       open:
         specifier: ^10.1.0
         version: 10.2.0
@@ -72,7 +72,7 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.12.0
         version: 1.29.0(zod@3.25.76)
-      '@novera/sdk':
+      novera-sdk:
         specifier: workspace:*
         version: link:../core
       zod:

@@ -1,4 +1,4 @@
-import { loginWithBrowser, resolveConfig } from "@novera/sdk";
+import { loginWithBrowser, resolveConfig } from "novera-sdk";
 import open from "open";
 
 import type { GlobalOptions } from "../context.js";

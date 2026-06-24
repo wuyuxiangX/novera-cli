@@ -2,7 +2,7 @@
 
 import Table from "cli-table3";
 import pc from "picocolors";
-import type { Item, Folder, SmartCollection, UserInfo } from "@novera/sdk";
+import type { Item, Folder, SmartCollection, UserInfo } from "novera-sdk";
 
 export interface OutputOptions {
   json?: boolean;

@@ -1,5 +1,5 @@
 {
-  "name": "@novera/sdk",
+  "name": "novera-sdk",
   "version": "0.1.0",
   "description": "Novera API client and authentication for Node — the core shared by the CLI and MCP server",
   "license": "MIT",

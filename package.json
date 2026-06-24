@@ -16,7 +16,7 @@
     "typecheck": "turbo run typecheck",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
-    "gen:types": "pnpm --filter @novera/sdk run gen:types",
+    "gen:types": "pnpm --filter novera-sdk run gen:types",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {

@@ -5,9 +5,9 @@ from the terminal, from scripts, and from AI clients.
 
 | Package                              | npm                  | What it is                                                |
 | ------------------------------------ | -------------------- | --------------------------------------------------------- |
-| [`@novera/sdk`](packages/core)       | `@novera/sdk`        | API client + auth (PAT and OAuth login). The shared core. |
+| [`novera-sdk`](packages/core)       | `novera-sdk`        | API client + auth (PAT and OAuth login). The shared core. |
 | [`novera`](packages/cli)             | `novera`             | The CLI — short command `nv`: `npx novera search "rust"`. |
-| [`@novera/mcp-server`](packages/mcp) | `@novera/mcp-server` | MCP server for Claude Desktop, Cursor, etc.               |
+| [`novera-mcp-server`](packages/mcp) | `novera-mcp-server` | MCP server for Claude Desktop, Cursor, etc.               |
 | [`skill/novera-save`](skill/novera-save) · [`skill/novera-search`](skill/novera-search) | — | Two focused Claude Code skills (save into / find in Novera) that drive the CLI. |
 
 ## Quick start
@@ -35,7 +35,7 @@ npx novera search "design systems"
   "mcpServers": {
     "novera": {
       "command": "npx",
-      "args": ["-y", "@novera/mcp-server"],
+      "args": ["-y", "novera-mcp-server"],
       "env": { "NOVERA_API_KEY": "opk_xxx" }
     }
   }
@@ -63,10 +63,10 @@ pnpm build         # build all packages (turbo)
 pnpm test          # vitest
 pnpm typecheck
 pnpm lint
-pnpm gen:types     # regenerate OpenAPI types into @novera/sdk
+pnpm gen:types     # regenerate OpenAPI types into novera-sdk
 ```
 
-This is a pnpm + turbo monorepo. `@novera/sdk` has no dependency on the CLI or
+This is a pnpm + turbo monorepo. `novera-sdk` has no dependency on the CLI or
 MCP packages; both depend on it. Releases are managed with
 [changesets](https://github.com/changesets/changesets).
 

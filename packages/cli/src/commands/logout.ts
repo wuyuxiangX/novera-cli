@@ -1,4 +1,4 @@
-import { clearCredential, resolveConfig } from "@novera/sdk";
+import { clearCredential, resolveConfig } from "novera-sdk";
 
 import type { GlobalOptions } from "../context.js";
 import { success } from "../output.js";

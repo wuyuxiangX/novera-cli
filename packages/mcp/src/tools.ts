@@ -2,7 +2,7 @@
  *  rather than one-per-endpoint, which keeps tool selection accurate. */
 
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { NoveraClient } from "@novera/sdk";
+import type { NoveraClient } from "novera-sdk";
 import { z } from "zod";
 
 function json(data: unknown) {

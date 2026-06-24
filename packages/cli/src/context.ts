@@ -1,6 +1,6 @@
 /** Shared command helpers: client construction and uniform error exit. */
 
-import { createClient, type NoveraClient } from "@novera/sdk";
+import { createClient, type NoveraClient } from "novera-sdk";
 import pc from "picocolors";
 
 export interface GlobalOptions {
