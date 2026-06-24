@@ -29,7 +29,6 @@
     "picocolors": "^1.1.1"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   }
 }
