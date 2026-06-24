@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "bin": {
+    "nv": "./dist/index.js",
     "novera": "./dist/index.js"
   },
   "files": [
@@ -28,6 +29,7 @@
     "picocolors": "^1.1.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }

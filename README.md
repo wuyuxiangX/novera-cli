@@ -6,20 +6,26 @@ from the terminal, from scripts, and from AI clients.
 | Package                              | npm                  | What it is                                                |
 | ------------------------------------ | -------------------- | --------------------------------------------------------- |
 | [`@novera/sdk`](packages/core)       | `@novera/sdk`        | API client + auth (PAT and OAuth login). The shared core. |
-| [`novera`](packages/cli)             | `novera`             | The CLI: `npx novera search "rust"`.                      |
+| [`novera`](packages/cli)             | `novera`             | The CLI — short command `nv`: `npx novera search "rust"`. |
 | [`@novera/mcp-server`](packages/mcp) | `@novera/mcp-server` | MCP server for Claude Desktop, Cursor, etc.               |
 | [`skill/novera-save`](skill/novera-save) · [`skill/novera-search`](skill/novera-search) | — | Two focused Claude Code skills (save into / find in Novera) that drive the CLI. |
 
 ## Quick start
 
 ```bash
+# Install once, then use the short `nv` command.
+npm i -g novera
+
 # Interactive: log in through the browser, then search.
-npx novera login
-npx novera search "design systems"
+nv login
+nv search "design systems"
 
 # Headless / CI / scripts: use a Personal Access Token.
 export NOVERA_API_KEY=opk_xxx
-npx novera items list --json
+nv items list --json
+
+# Or zero-install via npx (uses the full package name):
+npx novera search "design systems"
 ```
 
 ### MCP (Claude Desktop / Cursor)

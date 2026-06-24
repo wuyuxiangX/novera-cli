@@ -16,7 +16,7 @@ import { collectionsListCommand, foldersListCommand } from "./commands/folders.j
 const program = new Command();
 
 program
-  .name("novera")
+  .name("nv")
   .description("Command-line toolkit for Novera — search, capture, and organize saved content")
   .version("0.1.0")
   .option("--json", "output raw JSON (for scripts and the Novera skill)")
