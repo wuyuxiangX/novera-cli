@@ -7,7 +7,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  id-token: write # npm provenance (OIDC) — verifiable build attestation
+  id-token: write # OIDC for npm Trusted Publishing — no stored token needed
 
 jobs:
   release:
@@ -22,13 +22,16 @@ jobs:
           node-version: 20
           cache: pnpm
           registry-url: https://registry.npmjs.org
+      # Trusted Publishing (OIDC) requires a recent npm; the one bundled with
+      # node 20 is too old to exchange the OIDC token.
+      - run: npm install -g npm@latest
       - run: pnpm install --frozen-lockfile
-      # Opens/updates a "Version Packages" PR; publishes to npm when it merges.
+      # When changeset files are present, this opens/updates a "Version
+      # Packages" PR. When there are none (versions already bumped), it runs
+      # the publish command — authenticated via OIDC, no NPM_TOKEN.
       - uses: changesets/action@v1
         with:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: "true" # verifiable build attestation (CI only)
+          NPM_CONFIG_PROVENANCE: "true" # verifiable build attestation
