@@ -10,9 +10,7 @@ import { createServer, type Server } from "node:http";
 import type { AddressInfo, Socket } from "node:net";
 
 import { NoveraAuthError } from "../errors.js";
-
-const CHECK_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
-const CROSS_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
+import { MASCOT_DATA_URI } from "./mascot.js";
 
 function escapeHtml(value: string): string {
   return value.replace(
@@ -21,23 +19,28 @@ function escapeHtml(value: string): string {
   );
 }
 
-/** Minimal, on-brand callback page shown in the browser tab after the redirect.
- *  Kept deliberately spare — it's a throwaway tab the user closes immediately. */
+/** The OAuth callback tab shown after the browser redirects back. Mirrors the
+ *  Novera webapp's dark theme (near-black #111, Geist-ish system font, the cube
+ *  mascot, aggressive negative letter-spacing) and stays deliberately minimal —
+ *  it's a throwaway tab the user closes immediately. */
 function renderPage(variant: "ok" | "err", title: string, message: string): string {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Novera</title>
 <style>:root{color-scheme:dark}*{box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(120% 120% at 50% 0%,#17171b 0%,#0a0a0b 60%);color:#e9e9ec}
-.card{text-align:center;padding:40px;animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
-.brand{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#76767e;margin-bottom:16px}
-.badge{width:60px;height:60px;margin:0 auto 22px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(160deg,#2a2a31,#161619);border:1px solid rgba(255,255,255,.08);box-shadow:0 12px 34px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.02)}
-.badge svg{width:30px;height:30px}.ok{color:#34d399}.err{color:#f87171}
-.h{font-size:21px;font-weight:600;letter-spacing:-.01em}.p{margin-top:8px;font-size:14px;color:#8a8a92;line-height:1.5}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"PingFang SC",sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(130% 120% at 50% -10%,#1a1a1d 0%,#0e0e0f 58%);color:#ededed;letter-spacing:-.01em}
+.card{text-align:center;padding:40px 32px;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.mark{position:relative;width:84px;height:84px;margin:0 auto 26px}
+.mark img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+.mark::after{content:"";position:absolute;left:50%;bottom:-6px;width:78%;height:42%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(159,184,226,.30) 0%,rgba(88,112,154,.14) 46%,transparent 74%);filter:blur(4px);z-index:0}
+.h{font-size:22px;font-weight:600;letter-spacing:-.025em;margin:0}
+.h.err{color:#ff6369}
+.p{margin:8px 0 0;font-size:14px;color:#a1a1a1;line-height:1.55}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}</style></head>
-<body><main class="card"><div class="brand">Novera</div>
-<div class="badge ${variant}">${variant === "ok" ? CHECK_ICON : CROSS_ICON}</div>
-<div class="h">${escapeHtml(title)}</div><div class="p">${escapeHtml(message)}</div></main></body></html>`;
+<body><main class="card">
+<div class="mark"><img src="${MASCOT_DATA_URI}" alt="Novera" width="84" height="84"></div>
+<h1 class="h ${variant === "err" ? "err" : ""}">${escapeHtml(title)}</h1>
+<p class="p">${escapeHtml(message)}</p></main></body></html>`;
 }
 
 export interface LoopbackServer {
