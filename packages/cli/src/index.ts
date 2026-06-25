@@ -18,7 +18,7 @@ const program = new Command();
 program
   .name("nv")
   .description("Command-line toolkit for Novera — search, capture, and organize saved content")
-  .version("0.1.2")
+  .version("0.1.3")
   .option("--json", "output raw JSON (for scripts and the Novera skill)")
   .option("--env <env>", "target environment: production | development | local");
 

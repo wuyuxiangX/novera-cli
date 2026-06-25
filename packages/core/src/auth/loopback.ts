@@ -7,7 +7,7 @@
  */
 
 import { createServer, type Server } from "node:http";
-import type { AddressInfo } from "node:net";
+import type { AddressInfo, Socket } from "node:net";
 
 import { NoveraAuthError } from "../errors.js";
 
@@ -34,6 +34,9 @@ export async function startLoopbackServer(path = "/callback"): Promise<LoopbackS
   let expected: string | undefined;
 
   const server: Server = createServer((req, res) => {
+    // Close the browser's connection after each response so no keep-alive
+    // socket lingers and keeps the Node process alive after login completes.
+    res.setHeader("Connection", "close");
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     if (url.pathname !== path) {
       res.writeHead(404).end();
@@ -56,6 +59,14 @@ export async function startLoopbackServer(path = "/callback"): Promise<LoopbackS
     resolveCode(code);
   });
 
+  // Track open sockets so close() can destroy any that are still lingering
+  // (e.g. the browser's). Otherwise the process won't exit on its own.
+  const sockets = new Set<Socket>();
+  server.on("connection", (socket) => {
+    sockets.add(socket);
+    socket.once("close", () => sockets.delete(socket));
+  });
+
   await new Promise<void>((resolve, reject) => {
     server.once("error", reject);
     server.listen(0, "127.0.0.1", resolve);
@@ -70,6 +81,7 @@ export async function startLoopbackServer(path = "/callback"): Promise<LoopbackS
       return codePromise;
     },
     close(): void {
+      for (const socket of sockets) socket.destroy();
       server.close();
     },
   };
