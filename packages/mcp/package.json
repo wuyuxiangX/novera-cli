@@ -3,6 +3,11 @@
   "version": "0.1.3",
   "description": "Model Context Protocol server for Novera — search and manage saved content from AI clients",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuyuxiangX/novera-cli.git",
+    "directory": "packages/mcp"
+  },
   "type": "module",
   "bin": {
     "novera-mcp": "./dist/index.js"
