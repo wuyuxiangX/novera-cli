@@ -105,7 +105,7 @@ describe("resolveConfig", () => {
   it("maps production to the public hosts", () => {
     const config = resolveConfig({ env: "production" });
     expect(config.apiBase).toBe("https://api.novera.ink/api/v1");
-    expect(config.authorizeUrl).toBe("https://novera.ink/authorize");
+    expect(config.authorizeUrl).toBe("https://app.novera.ink/authorize");
     expect(config.tokenUrl).toBe("https://api.novera.ink/api/v1/oauth/token");
   });
 });

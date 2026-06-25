@@ -7,7 +7,7 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   target: "node18",
-  // keytar is an optional native module — keep it as a runtime import so it
-  // resolves from node_modules (or fails gracefully) instead of being bundled.
-  external: ["keytar"],
+  // @napi-rs/keyring is an optional native module — keep it as a runtime import
+  // so it resolves from node_modules (or fails gracefully) instead of bundled.
+  external: ["@napi-rs/keyring"],
 });

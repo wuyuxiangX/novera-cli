@@ -1,6 +1,6 @@
 {
   "name": "novera-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Novera API client and authentication for Node — the core shared by the CLI and MCP server",
   "license": "MIT",
   "type": "module",
@@ -29,7 +29,7 @@
     "gen:types": "openapi-typescript ${NOVERA_OPENAPI_URL:-https://api.dev.novera.ink/openapi.json} -o src/generated/schema.d.ts"
   },
   "optionalDependencies": {
-    "keytar": "^7.9.0"
+    "@napi-rs/keyring": "^1.3.0"
   },
   "devDependencies": {
     "openapi-typescript": "^7.4.4"
